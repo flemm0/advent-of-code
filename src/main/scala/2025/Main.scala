@@ -13,3 +13,7 @@ object Main:
 
     val q2p2Result = Q2.findInvalidIds(Q2.parseInput("2025_Q2.txt"))(Q2.isInvalidIdFull)
     println(s"The sum of all invalid IDs using the new rule is ${q2p2Result}.")
+
+    println("-----")
+    val q3Result = Q3.totalOutputJoltage(Q3.parseInput("2025_Q3.txt"))
+    println(s"The total output joltage is ${q3Result}.")
