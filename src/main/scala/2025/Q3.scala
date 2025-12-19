@@ -7,17 +7,13 @@ object Q3:
       .getLines()
       .toList
 
-  def numToDigits(num: String): List[Int] =
-    num.grouped(1).toList.map(_.toInt)
-  
-  def maxVoltage(num: String): Int =
-    numToDigits(num)
-      .tails
-      .flatMap {
-        case a :: rest => rest.map(a * 10 + _).maxOption
-        case _         => None
-      }
-      .max
+  def findMaxDigit(num: String, remainingDigits: Int): String =
+    val idxOfMax = (0 until num.size - remainingDigits + 1)
+      .maxBy(num.charAt(_))
+    val maxNum = remainingDigits match
+      case 1 => num.charAt(idxOfMax).toString
+      case _ => num.charAt(idxOfMax).toString + findMaxDigit(num.substring(idxOfMax + 1), remainingDigits - 1)
+    maxNum
 
-  def totalOutputJoltage(nums: List[String]): Int =
-    nums.map(maxVoltage).sum
+  def totalOutputJoltage(nDigits: Int)(bank: List[String]): Long =
+    bank.map(findMaxDigit(_, nDigits).toLong).sum
