@@ -6,8 +6,10 @@ object Main:
     println("2025 Main")
     println("-----")
 
-    val q1Result = Q1.crackSafe(Q1.parseInput("2025_Q1.txt"))
-    println(s"The password to open the door is ${q1Result}.")
+    val q1p1Result = Q1.crackSafe(Q1.parseInput("2025_Q1.txt"))
+    println(s"The password to open the door is ${q1p1Result}.")
+    val q1p2Result = Q1.crackSafeForReal(50, Q1.parseInput("2025_Q1.txt"))
+    println(s"The password to open the door using the click method is ${q1p2Result}.")
 
     println("-----")
     val q2p1Result = Q2.findInvalidIds(Q2.parseInput("2025_Q2.txt"))(Q2.isInvalidId)

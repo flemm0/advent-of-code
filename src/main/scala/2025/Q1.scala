@@ -23,4 +23,22 @@ object Q1:
       .scanLeft(50)(dialPosition)
       .tail
       .count(_ == 0)
+
+  def allClicks(currentPos: Int, turn: Int): IndexedSeq[Int] =
+    (currentPos to currentPos + turn by (if turn > 0 then 1 else -1))
+      .map {pos =>
+        ((pos % 100) + 100) % 100
+      }
+      .tail
   
+  def crackSafeForReal(startPos: Int, rotations: List[String]): Int =
+    rotations
+      .map(turnDial)
+      .foldLeft(startPos, 0) {
+        case ((currentPos, zeroCount), turn) =>
+          val clicks = allClicks(currentPos, turn)
+          val newZeroCount = zeroCount + clicks.count(_ == 0)
+          val newPos = clicks.last
+          (newPos, newZeroCount)
+      }
+      ._2
