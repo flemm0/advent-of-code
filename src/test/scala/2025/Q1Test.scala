@@ -1,5 +1,5 @@
 import org.scalatest.funsuite.AnyFunSuite
-import `2025`.Q1.*
+import aoc2025.Q1.*
 
 
 class Q1Test extends AnyFunSuite:

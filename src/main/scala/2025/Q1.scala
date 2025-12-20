@@ -1,4 +1,4 @@
-package `2025`
+package aoc2025
 
 import scala.math.abs
 import scala.io.Source

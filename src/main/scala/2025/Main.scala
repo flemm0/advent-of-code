@@ -1,4 +1,4 @@
-import `2025`.*
+import aoc2025.*
 
 object Main:
 

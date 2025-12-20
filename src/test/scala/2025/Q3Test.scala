@@ -1,5 +1,5 @@
 import org.scalatest.funsuite.AnyFunSuite
-import `2025`.Q3.*
+import aoc2025.Q3.*
 
 class Q3Test extends AnyFunSuite:
   val exampleBanks = List(
