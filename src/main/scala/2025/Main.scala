@@ -28,3 +28,6 @@ object Main:
     println("-----")
     val q4p1Result = Q4.totalAccessiblePositions(Q4.parseInput("2025_Q4.txt"))
     println(s"The total number of accessible positions is ${q4p1Result}.")
+
+    val q4p2Result = Q4.totalAccessiblePositionsWithRemoval(Q4.parseInput("2025_Q4.txt"))
+    println(s"The total number of accessible positions with removal is ${q4p2Result}.")

@@ -22,3 +22,22 @@ object Q4:
       x <- grid.head.indices
       if canAccessPosition(x, y, grid) && grid(y).charAt(x) == '@'
     yield 1).sum
+
+  def accessiblePositions(grid: List[String]): List[(Int, Int)] =
+    (for
+      y <- grid.indices
+      x <- grid.head.indices
+      if canAccessPosition(x, y, grid) && grid(y).charAt(x) == '@'
+    yield (x, y)).toList
+
+  def removeAccessedPositions(grid: List[String], positions: List[(Int, Int)]): List[String] =
+    val gridArray = grid.map(_.toCharArray).toArray
+    positions.foreach { case (x, y) => gridArray(y)(x) = '.' }
+    gridArray.map(_.mkString).toList
+
+  def totalAccessiblePositionsWithRemoval(grid: List[String]): Int =
+    accessiblePositions(grid) match
+      case Nil => 0
+      case positions =>
+        val newGrid = removeAccessedPositions(grid, positions)
+        positions.size + totalAccessiblePositionsWithRemoval(newGrid)

@@ -20,3 +20,8 @@ class Q4Test extends AnyFunSuite:
     val res = totalAccessiblePositions(exampleGrid)
     assert(res == 13)
   }
+
+  test("q4 part 2 test"){
+    val res = totalAccessiblePositionsWithRemoval(exampleGrid)
+    assert(res == 43)
+  }
