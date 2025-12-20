@@ -24,3 +24,7 @@ object Main:
 
     val q3p2Result = Q3.totalOutputJoltage(12)(Q3.parseInput("2025_Q3.txt"))
     println(s"The total output joltage with 12 digits is ${q3p2Result}.")
+
+    println("-----")
+    val q4p1Result = Q4.totalAccessiblePositions(Q4.parseInput("2025_Q4.txt"))
+    println(s"The total number of accessible positions is ${q4p1Result}.")
