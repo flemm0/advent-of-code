@@ -38,3 +38,5 @@ object Main:
       Q5.parseInput("2025_Q5.txt")._2
     )
     println(s"The total number of fresh ingredients is ${q5p1Result}.")
+    val q5p2Result = Q5.countTotalFreshIngredients(Q5.parseInput("2025_Q5.txt")._1)
+    println(s"The total number of all fresh ingredients reanges is ${q5p2Result}.")
