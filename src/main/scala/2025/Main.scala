@@ -31,3 +31,10 @@ object Main:
 
     val q4p2Result = Q4.totalAccessiblePositionsWithRemoval(Q4.parseInput("2025_Q4.txt"))
     println(s"The total number of accessible positions with removal is ${q4p2Result}.")
+
+    println("-----")
+    val q5p1Result = Q5.countFreshIngredients(
+      Q5.parseInput("2025_Q5.txt")._1,
+      Q5.parseInput("2025_Q5.txt")._2
+    )
+    println(s"The total number of fresh ingredients is ${q5p1Result}.")
