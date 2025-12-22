@@ -40,3 +40,13 @@ object Main:
     println(s"The total number of fresh ingredients is ${q5p1Result}.")
     val q5p2Result = Q5.countTotalFreshIngredients(Q5.parseInput("2025_Q5.txt")._1)
     println(s"The total number of all fresh ingredients reanges is ${q5p2Result}.")
+
+    println("-----")
+    val q6p1Result = Q6.solveCephlapodMathProblem(
+      Q6.parseColumnExpressionsByRows(Q6.parseInput("2025_Q6.txt"))
+    )
+    println(s"The answer to the cephlapod math problem is ${q6p1Result}.")
+    val q6p2Result = Q6.solveCephlapodMathProblem(
+      Q6.parseColumnExpressionsByChars(Q6.parseInput("2025_Q6.txt"))
+    )
+    println(s"The answer to the cephlapod math problem using char parsing is ${q6p2Result}.")
