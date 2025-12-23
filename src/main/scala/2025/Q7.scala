@@ -33,3 +33,24 @@ object Q7:
         (getNextBeamPositions(currentBeams, splitIndices), totalSplits + splitIndices.size)
     }
     ._2
+
+  def totalBeamTimelines(input: List[String]): BigInt =
+    val start = input.head
+    val manifold = input.tail
+    manifold.foldLeft(Map(start.indexOf('S') -> BigInt(1))) {
+      case (currentTimelines, row) =>
+        val splitIndices = findSplitIndices(row, currentTimelines.keySet)
+        val intermediateState = currentTimelines.map { case (beamPos, timelineCount) =>
+          if splitIndices.contains(beamPos) then
+            beamPos -> (List(beamPos - 1, beamPos + 1), timelineCount)
+          else
+            beamPos -> (List(beamPos), timelineCount)
+        }
+        intermediateState.values
+          .flatMap { case (targets, count) =>
+            targets.map( _ -> count)
+          }
+          .groupMapReduce(_._1)( _._2 )( _ + _ )
+    }
+    .values
+    .sum

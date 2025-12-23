@@ -54,3 +54,5 @@ object Main:
     println("-----")
     val q7p1Result = Q7.totalBeamSplits(Q7.parseInput("2025_Q7.txt"))
     println(s"The total number of beam splits is ${q7p1Result}.")
+    val q7p2Result = Q7.totalBeamTimelines(Q7.parseInput("2025_Q7.txt"))
+    println(s"The total number of beam timelines is ${q7p2Result}.")

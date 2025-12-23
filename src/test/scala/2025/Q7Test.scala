@@ -9,3 +9,8 @@ class Q7Test extends AnyFunSuite:
     val result = totalBeamSplits(inputData)
     assert(result == 21)
   }
+
+  test("q7 part 2 test") {
+    val result = totalBeamTimelines(inputData)
+    assert(result == BigInt(40))
+  }
