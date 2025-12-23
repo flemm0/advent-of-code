@@ -50,3 +50,7 @@ object Main:
       Q6.parseColumnExpressionsByChars(Q6.parseInput("2025_Q6.txt"))
     )
     println(s"The answer to the cephlapod math problem using char parsing is ${q6p2Result}.")
+
+    println("-----")
+    val q7p1Result = Q7.totalBeamSplits(Q7.parseInput("2025_Q7.txt"))
+    println(s"The total number of beam splits is ${q7p1Result}.")
