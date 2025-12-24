@@ -56,3 +56,13 @@ object Main:
     println(s"The total number of beam splits is ${q7p1Result}.")
     val q7p2Result = Q7.totalBeamTimelines(Q7.parseInput("2025_Q7.txt"))
     println(s"The total number of beam timelines is ${q7p2Result}.")
+
+    println("-----")
+    val q8p1Result = Q8.threeLargestJunctionsProduct(
+      Q8.formJunctions(
+        Q8.shortestConnections(
+          Q8.parseInput("2025_Q8.txt"), 1000
+        )
+      )
+    )
+    println(s"The product of the sizes of the three largest junctions is ${q8p1Result}.")
