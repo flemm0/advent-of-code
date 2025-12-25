@@ -85,4 +85,8 @@ object Main:
       )
     )
     println(s"The area of the largest rectangle is ${q9p1Result}.")
-
+    val q9p2Result = Q9.largestNonOverlappingRectangleArea(
+      Q9.makeRectangles(Q9.parseInput("2025_Q9.txt")),
+      Q9.makeBoundaries(Q9.parseInput("2025_Q9.txt"))
+    )
+    println(s"The area of the largest rectangle within boundaries is ${q9p2Result}.")

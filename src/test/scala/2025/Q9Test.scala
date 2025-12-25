@@ -19,3 +19,9 @@ class Q9Test extends AnyFunSuite:
     val result = largestRectangleArea(makeRectangles(points))
     assert(result == 50L)
   }
+
+  test("q9 part 2 test") {
+    val boundaries = makeBoundaries(points)
+    val result = largestNonOverlappingRectangleArea(makeRectangles(points), boundaries)
+    assert(result == 24L)
+  }
