@@ -66,3 +66,11 @@ object Main:
       )
     )
     println(s"The product of the sizes of the three largest junctions is ${q8p1Result}.")
+    val q8p2Result = Q8.formJunctionsUntilAllConnected(
+      Q8.shortestConnections(
+        Q8.parseInput("2025_Q8.txt"), 
+        Q8.parseInput("2025_Q8.txt").size * Q8.parseInput("2025_Q8.txt").size
+      ).map(_._1),
+      Q8.parseInput("2025_Q8.txt").map(List(_))
+    )
+    println(s"The product of the x coordinates of the final junction is ${q8p2Result}.")

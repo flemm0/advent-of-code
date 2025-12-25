@@ -58,3 +58,30 @@ object Q8:
       .take(3)
       .map(_.toLong)
       .product
+
+  @annotation.tailrec
+  def formJunctionsUntilAllConnected(remainingPairs: List[(JunctionBox, JunctionBox)],
+                                    acc: List[List[JunctionBox]]): Long =
+    remainingPairs match
+      case Nil            => 
+        throw new RuntimeException("All pairs processed but not all connected")
+      case (a, b) :: rest =>
+        val (aGroup, bGroup) = (acc.find(_.contains(a)), acc.find(_.contains(b)))
+        val nextAcc = (aGroup, bGroup) match
+          case (None, None)         =>
+            acc :+ List(a, b)
+          case (Some(ag), None)     =>
+            acc.filterNot(_ == ag) :+ (ag :+ b)
+          case (None, Some(bg))     =>
+            acc.filterNot(_ == bg) :+ (bg :+ a)
+          case (Some(ag), Some(bg)) => 
+            // need to merge the groups if not already the same
+            if ag != bg then
+              acc.filterNot(g => g == ag || g == bg) :+ (ag ++ bg)
+            else
+              acc
+        // start acc as each box in its own group
+        if nextAcc.length == 1 then
+          a.x * b.x
+        else
+          formJunctionsUntilAllConnected(rest, nextAcc)

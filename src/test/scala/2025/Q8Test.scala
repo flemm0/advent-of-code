@@ -13,3 +13,10 @@ class Q8Test extends AnyFunSuite:
     )
     assert(result == 40L)
   }
+
+  test("q8 part 2 test") {
+    val allConnections = shortestConnections(input, input.size * input.size)
+      .map(_._1)
+    val result = formJunctionsUntilAllConnected(allConnections, input.map(List(_)))
+    assert(result == 25272L)
+  }
