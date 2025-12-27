@@ -90,3 +90,9 @@ object Main:
       Q9.makeBoundaries(Q9.parseInput("2025_Q9.txt"))
     )
     println(s"The area of the largest rectangle within boundaries is ${q9p2Result}.")
+
+    println(divider)
+    val q10p1Result = Q10.configureAllMachines(
+      Q10.parseInput("2025_Q10.txt")
+    )
+    println(s"The total number of button presses to configure all machines is ${q10p1Result}.")
