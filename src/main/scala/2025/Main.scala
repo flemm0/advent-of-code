@@ -93,6 +93,9 @@ object Main:
 
     println(divider)
     val q10p1Result = Q10.configureAllMachines(
-      Q10.parseInput("2025_Q10.txt")
+      Q10.parseInput("2025_Q10.txt").map {
+        case (diagram, wirings, joltageReqs) =>
+          (diagram, wirings)
+      }
     )
     println(s"The total number of button presses to configure all machines is ${q10p1Result}.")

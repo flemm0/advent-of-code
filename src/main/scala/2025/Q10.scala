@@ -38,7 +38,7 @@ object Q10:
 
   case class LightDiagramState(diagram: LightDiagram, presses: Int)
 
-  def parseInput(fname: String): List[(LightDiagram, List[List[Int]])] =
+  def parseInput(fname: String): List[(LightDiagram, List[List[Int]], List[Int])] =
     val lines = scala.io.Source.fromResource(fname).getLines().toList
     lines.map { line =>
       val elements = line.split(" ")
@@ -52,7 +52,11 @@ object Q10:
           .map(_.filter(_.isDigit).toInt)
       }
       .toList
-      (lightDiagram, wirings)
+      val joltageRequirements = elements.last
+        .split(",")
+        .map(_.filter(_.isDigit).toInt)
+        .toList
+      (lightDiagram, wirings, joltageRequirements)
     }
 
   /**
