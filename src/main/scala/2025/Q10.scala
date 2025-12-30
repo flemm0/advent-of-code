@@ -31,10 +31,10 @@ object Q10:
           else light
         }
       LightDiagram(newLights)
-    // def applyWiringSchemantics(wirings: List[List[Int]]): LightDiagram =
-    //   wirings.foldLeft(this) { (diagram, wiring) =>
-    //     diagram.flipLights(wiring)
-    //   }
+    def applyWiringSchemantics(wirings: List[List[Int]]): LightDiagram =
+      wirings.foldLeft(this) { (diagram, wiring) =>
+        diagram.flipLights(wiring)
+      }
 
   case class LightDiagramState(diagram: LightDiagram, presses: Int)
 
@@ -111,3 +111,57 @@ object Q10:
       )
     }
     .sum
+
+
+  /**
+    * Calculates the reachable light diagram states from pressing each button at most once
+    *
+    */
+  def allReachableStatesFromStart(
+    buttons: List[List[Int]],
+    joltageReq: List[Int]
+  ): Map[Vector[Int], Int] =
+    (0 to buttons.size)
+      .flatMap(buttons.combinations)
+      .toList
+      .map { btns => 
+        val counts = btns.flatten.groupMapReduce(identity)(_ => 1)(_ + _)
+        val presses = (0 until joltageReq.size).toList.map(i => counts.getOrElse(i, 0))
+        (presses.toVector, btns.size)
+      }
+      .groupMapReduce(_._1)(_._2)(math.min)
+
+  def configureMachineWithJoltageRequirements(
+      buttons: List[List[Int]],
+      joltageReq: Vector[Int],
+      cache: Map[Vector[Int], Option[Int]] = Map.empty
+  ): (Option[Int], Map[Vector[Int], Option[Int]]) =
+    if (joltageReq.forall(_ == 0)) (Some(0), cache)
+    else cache.get(joltageReq) match {
+      case Some(value) => (value, cache)
+      case None =>
+        val allMoves = allReachableStatesFromStart(buttons, joltageReq.toList).toList
+        val (choices, newCache) = allMoves.foldLeft((List.empty[Int], cache)) {
+          case ((accChoices, c), (delta, cost)) =>
+            val newJoltage = joltageReq.zip(delta).map { case (goal, diff) => goal - diff }
+            if (newJoltage.forall(_ >= 0) && newJoltage.forall(_ % 2 == 0)) {
+              val (resOpt, updatedCache) =
+                configureMachineWithJoltageRequirements(buttons, newJoltage.map(_ / 2).toVector, c)
+              val newAcc = resOpt.map(r => cost + r * 2).toList ++ accChoices
+              (newAcc, updatedCache)
+            } else (accChoices, c)
+        }
+
+        val best = choices.minOption
+        (best, newCache + (joltageReq -> best))
+    }
+
+  def configureAllMachinesWithJoltageRequirements(
+      inputs: List[(Any, List[List[Int]], List[Int])]
+  ): Int =
+    inputs.map { case (_, wirings, joltageReqs) =>
+      configureMachineWithJoltageRequirements(
+        wirings,
+        joltageReqs.toVector
+      )._1.getOrElse(throw new RuntimeException("Answer not found"))
+    }.sum

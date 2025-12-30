@@ -99,3 +99,7 @@ object Main:
       }
     )
     println(s"The total number of button presses to configure all machines is ${q10p1Result}.")
+    val q10p2Result = Q10.configureAllMachinesWithJoltageRequirements(
+      Q10.parseInput("2025_Q10.txt")
+    )
+    println(s"The total number of button presses to configure all machines with joltage requirements is ${q10p2Result}.")

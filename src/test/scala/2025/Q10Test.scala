@@ -12,3 +12,10 @@ class Q10Test extends AnyFunSuite:
     val result = configureAllMachines(sampleInput)
     assert(result == 7)
   }
+
+  test("q10 part 2 test") {
+    val result = configureAllMachinesWithJoltageRequirements(
+      parseInput("2025_Q10_test.txt")
+    )
+    assert(result == 33)
+  }
