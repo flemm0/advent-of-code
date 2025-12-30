@@ -103,3 +103,7 @@ object Main:
       Q10.parseInput("2025_Q10.txt")
     )
     println(s"The total number of button presses to configure all machines with joltage requirements is ${q10p2Result}.")
+
+    println(divider)
+    val q11p1Result = Q11.countAllPaths(Q11.parseInput("2025_Q11.txt"))
+    println(s"The total number of distinct paths through the devices is ${q11p1Result}.")
