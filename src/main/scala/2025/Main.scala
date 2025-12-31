@@ -107,3 +107,5 @@ object Main:
     println(divider)
     val q11p1Result = Q11.countAllPaths(Q11.parseInput("2025_Q11.txt"))
     println(s"The total number of distinct paths through the devices is ${q11p1Result}.")
+    val q11p2Result = Q11.countAllProblematicPaths(Q11.parseInput("2025_Q11.txt"))
+    println(s"The total number of distinct problematic paths through the devices is ${q11p2Result}.")
