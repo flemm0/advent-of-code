@@ -109,3 +109,8 @@ object Main:
     println(s"The total number of distinct paths through the devices is ${q11p1Result}.")
     val q11p2Result = Q11.countAllProblematicPaths(Q11.parseInput("2025_Q11.txt"))
     println(s"The total number of distinct problematic paths through the devices is ${q11p2Result}.")
+
+    println(divider)
+    val (presents, regions) = Q12.parseInput("2025_Q12.txt")
+    val q12p1Result = Q12.regionsThatCanFitPresents(presents, regions)
+    println(s"The number of regions that can fit the presents is ${q12p1Result}.")
